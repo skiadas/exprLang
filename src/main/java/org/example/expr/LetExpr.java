@@ -19,6 +19,10 @@ public class LetExpr extends Expr {
         this.e2 = e2;
     }
 
+    public <T, D> T accept(Visitor<T, D> visitor, D data) {
+        return visitor.visit(this, data);
+    }
+
     public Value eval(Env<Value> env) {
         Value v = e1.eval(env);
         Env<Value> env2 = Env.extend(env);

@@ -25,5 +25,19 @@ public class Main {
         Type type = program.typeCheck(Env.empty());
         System.out.println(type);
         System.out.println(result);
+        Expr program2 =
+                let("x",
+                    num(3),
+                    plus(
+                            let("x",
+                                plus(var("x"), num(1)),
+                                plus(var("x"), num(3))),
+                            var("x")
+                        ));
+        Value result2 = program2.eval(Env.empty());
+
+        Type type2 = program2.typeCheck(Env.empty());
+        System.out.println(type2);
+        System.out.println(result2);
     }
 }

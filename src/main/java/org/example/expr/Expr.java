@@ -27,6 +27,7 @@ public abstract class Expr {
         return new CondExpr(e1, e2, e3);
     }
 
+    public abstract <T, D> T accept(Visitor<T, D> visitor, D data);
 
     public abstract Value eval(Env<Value> env);
     public abstract Type typeCheck(Env<Type> env);

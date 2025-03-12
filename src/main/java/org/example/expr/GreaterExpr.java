@@ -14,6 +14,10 @@ public class GreaterExpr extends Expr {
         this.e2 = e2;
     }
 
+    public <T, D> T accept(Visitor<T, D> visitor, D data) {
+        return visitor.visit(this, data);
+    }
+
     public Value eval(Env<Value> env) {
         double v1 = e1.eval(env).asDouble();
         double v2 = e2.eval(env).asDouble();

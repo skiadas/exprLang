@@ -13,6 +13,10 @@ public class VarExpr extends Expr {
         this.symbol = symbol;
     }
 
+    public <T, D> T accept(Visitor<T, D> visitor, D data) {
+        return visitor.visit(this, data);
+    }
+
     public Value eval(Env<Value> env) {
         Optional<Value> vOpt = env.getValue(symbol);
         if (vOpt.isPresent()) return vOpt.get();

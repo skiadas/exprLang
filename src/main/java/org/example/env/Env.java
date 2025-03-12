@@ -36,8 +36,6 @@ public class Env<T> {
     // Otherwise if value exists in ancestor, update there
     // Otherwise add to this
     public void setValue(String s, T v) {
-        if (map.containsKey(s)) map.put(s, v);
-        else if (contains(s)) parent.setValue(s, v);
-        else map.put(s, v);
+        map.put(s, v);
     }
 }

@@ -11,6 +11,10 @@ public class BoolExpr extends Expr {
         this.value = value;
     }
 
+    public <T, D> T accept(Visitor<T, D> visitor, D data) {
+        return visitor.visit(this, data);
+    }
+
     public Value eval(Env<Value> env) {
         return Value.bool(value);
     }

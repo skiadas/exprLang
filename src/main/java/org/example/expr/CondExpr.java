@@ -17,6 +17,10 @@ public class CondExpr extends Expr {
         this.falseCase = falseCase;
     }
 
+    public <T, D> T accept(Visitor<T, D> visitor, D data) {
+        return visitor.visit(this, data);
+    }
+
     public Value eval(Env<Value> env) {
         boolean test = cond.eval(env).asBoolean();
         if (test) return trueCase.eval(env);
