@@ -27,6 +27,7 @@ public abstract class Expr {
         return new CondExpr(e1, e2, e3);
     }
     public static Expr func(String param, Expr body) { return new FuncExpr(param, body); }
+    public static Expr apply(Expr func, Expr arg) { return new ApplyExpr(func, arg); }
 
     public abstract <T, D> T accept(Visitor<T, D> visitor, D data);
 

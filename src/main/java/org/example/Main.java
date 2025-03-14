@@ -42,5 +42,12 @@ public class Main {
         Type type2 = program2.typeCheck(Env.empty());
         System.out.println(type2);
         System.out.println(result2);
+        Expr program3 =
+                apply(
+                        func("x", plus(var("x"), var("x"))),
+                        num(3)
+                     );
+        Value result3 = program3.accept(evalVisitor, Env.empty());
+        System.out.println(result3);
     }
 }
