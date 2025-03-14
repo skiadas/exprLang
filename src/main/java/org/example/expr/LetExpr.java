@@ -6,7 +6,6 @@ package org.example.expr;
 
 import org.example.env.Env;
 import org.example.type.Type;
-import org.example.value.Value;
 
 public class LetExpr extends Expr {
     final String symbol;
@@ -21,13 +20,6 @@ public class LetExpr extends Expr {
 
     public <T, D> T accept(Visitor<T, D> visitor, D data) {
         return visitor.visit(this, data);
-    }
-
-    public Value eval(Env<Value> env) {
-        Value v = e1.eval(env);
-        Env<Value> env2 = Env.extend(env);
-        env2.setValue(symbol, v);
-        return e2.eval(env2);
     }
 
     public Type typeCheck(Env<Type> env) {

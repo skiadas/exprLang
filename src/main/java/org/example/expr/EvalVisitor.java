@@ -11,22 +11,22 @@ public class EvalVisitor implements Visitor<Value, Env<Value>> {
     }
 
     public Value visit(CondExpr expr, Env<Value> env) {
-        boolean test = expr.cond.eval(env).asBoolean();
-        if (test) return expr.trueCase.eval(env);
-        else return expr.falseCase.eval(env);
+        boolean test = expr.cond.accept(this, env).asBoolean();
+        if (test) return expr.trueCase.accept(this, env);
+        else return expr.falseCase.accept(this, env);
     }
 
     public Value visit(GreaterExpr expr, Env<Value> env) {
-        double v1 = expr.e1.eval(env).asDouble();
-        double v2 = expr.e2.eval(env).asDouble();
+        double v1 = expr.e1.accept(this, env).asDouble();
+        double v2 = expr.e2.accept(this, env).asDouble();
         return Value.bool(v1 > v2);
     }
 
     public Value visit(LetExpr expr, Env<Value> env) {
-        Value v = expr.e1.eval(env);
+        Value v = expr.e1.accept(this, env);
         Env<Value> env2 = Env.extend(env);
         env2.setValue(expr.symbol, v);
-        return expr.e2.eval(env2);
+        return expr.e2.accept(this, env2);
     }
 
     public Value visit(NumExpr expr, Env<Value> env) {
@@ -34,8 +34,8 @@ public class EvalVisitor implements Visitor<Value, Env<Value>> {
     }
 
     public Value visit(PlusExpr expr, Env<Value> env) {
-        double v1 = expr.e1.eval(env).asDouble();
-        double v2 = expr.e2.eval(env).asDouble();
+        double v1 = expr.e1.accept(this, env).asDouble();
+        double v2 = expr.e2.accept(this, env).asDouble();
         return Value.dbl(v1 + v2);
     }
 

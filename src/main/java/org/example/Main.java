@@ -20,7 +20,10 @@ public class Main {
                             plus(var("x"), num(1)),
                             var("x")
                               ));
-        Value result = program.eval(Env.empty());
+//        Value result = program.eval(Env.empty());
+        EvalVisitor evalVisitor = new EvalVisitor();
+//        evalVisitor.visit(program, Env.empty());
+        Value result = program.accept(evalVisitor, Env.empty());
 
         Type type = program.typeCheck(Env.empty());
         System.out.println(type);
@@ -34,7 +37,7 @@ public class Main {
                                 plus(var("x"), num(3))),
                             var("x")
                         ));
-        Value result2 = program2.eval(Env.empty());
+        Value result2 = program2.accept(evalVisitor, Env.empty());
 
         Type type2 = program2.typeCheck(Env.empty());
         System.out.println(type2);

@@ -29,6 +29,5 @@ public abstract class Expr {
 
     public abstract <T, D> T accept(Visitor<T, D> visitor, D data);
 
-    public abstract Value eval(Env<Value> env);
     public abstract Type typeCheck(Env<Type> env);
 }

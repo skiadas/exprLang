@@ -2,7 +2,6 @@ package org.example.expr;
 
 import org.example.env.Env;
 import org.example.type.Type;
-import org.example.value.Value;
 
 public class PlusExpr extends Expr {
     final Expr e1;
@@ -15,12 +14,6 @@ public class PlusExpr extends Expr {
 
     public <T, D> T accept(Visitor<T, D> visitor, D data) {
         return visitor.visit(this, data);
-    }
-
-    public Value eval(Env<Value> env) {
-        double v1 = e1.eval(env).asDouble();
-        double v2 = e2.eval(env).asDouble();
-        return Value.dbl(v1 + v2);
     }
 
     public Type typeCheck(Env<Type> env) {
