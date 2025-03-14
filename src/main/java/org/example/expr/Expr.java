@@ -26,6 +26,7 @@ public abstract class Expr {
     public static Expr ifThenElse(Expr e1, Expr e2, Expr e3) {
         return new CondExpr(e1, e2, e3);
     }
+    public static Expr func(String param, Expr body) { return new FuncExpr(param, body); }
 
     public abstract <T, D> T accept(Visitor<T, D> visitor, D data);
 

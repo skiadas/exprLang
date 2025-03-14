@@ -8,4 +8,6 @@ public interface Visitor<T, D> {
     T visit(NumExpr expr, D data);
     T visit(PlusExpr expr, D data);
     T visit(VarExpr expr, D data);
+    T visit(FuncExpr expr, D data);
+    T visit(ApplyExpr expr, D data);
 }
